@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="555" pageHeight="560" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4ff92fe6-b2d5-4b23-90ff-0fe1cd6e5db7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     pasien.`id_pasien` AS pasien_id_pasien,
+     pasien.`nama_pasien` AS pasien_nama_pasien,
+     pasien.`alamat` AS pasien_alamat,
+     pasien.`nama_test` AS pasien_nama_test,
+     pasien.`tanggal_lahir` AS pasien_tanggal_lahir
+FROM
+     `pasien` pasien]]>
+	</queryString>
+	<field name="pasien_nama_pasien" class="java.lang.String"/>
+	<field name="pasien_alamat" class="java.lang.String"/>
+	<field name="pasien_nama_test" class="java.lang.String"/>
+	<field name="pasien_tanggal_lahir" class="java.sql.Date"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="-20" width="555" height="92" backcolor="#006699" uuid="effb1e0a-51eb-40ba-8c22-2276363826d0"/>
+				<staticText>
+					<reportElement x="20" y="20" width="202" height="43" forecolor="#FFFFFF" uuid="cdb1da69-3262-4eac-9e7a-5b479cef0205"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data Pasien]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="363" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="eba6f271-1a83-42f8-bf8a-d041253ce6a5"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[RS. Tiara Bunda]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="97813927-88c7-43d9-94c5-3ddeeb2fd5db"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="76467d70-1e29-42a7-81f9-41e8f9c9be8a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f760ad3e-a5a3-4fad-b355-6f905ba0da9a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9892ef10-cf98-4696-a109-8c4abaa206a0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="414" y="0" width="141" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c864a2b6-f202-4dc1-852c-c62659bd134c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis Pemeriksaan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="6fde6a99-d0bb-4fd7-9799-3d2f3aaad387"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="138" height="20" uuid="d81b79cc-803c-4c11-9eaa-41860f5583ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pasien_nama_pasien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="138" y="0" width="138" height="20" uuid="bcd7b8b1-356e-4511-9d03-6066ed59b871"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pasien_alamat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="138" height="20" uuid="50dca686-5789-41bf-bb24-4be435157038"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pasien_tanggal_lahir}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="414" y="0" width="141" height="20" uuid="d35689c5-71b1-4b7f-a5f4-f89cfb3d1440"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pasien_nama_test}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17"/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

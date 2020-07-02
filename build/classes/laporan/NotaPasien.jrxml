@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NotaPasien" language="groovy" pageWidth="500" pageHeight="350" columnWidth="500" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="37d1c2b8-c50b-4916-9a24-fd80892fcac0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     analis.`id_analis` AS analis_id_analis,
+     analis.`nama_analis` AS analis_nama_analis,
+     analis.`alamat_analis` AS analis_alamat_analis,
+     analis.`password` AS analis_password,
+     analis.`pend_terakhir` AS analis_pend_terakhir,
+     analis.`no_hp` AS analis_no_hp,
+     buat.`id_pas` AS buat_id_pas,
+     buat.`subtest` AS buat_subtest,
+     buat.`jtanggal_periksa` AS buat_jtanggal_periksa,
+     buat.`hasil_pemeriksaan` AS buat_hasil_pemeriksaan,
+     nota.`id_nota` AS nota_id_nota,
+     nota.`jtanggal_periksa` AS nota_jtanggal_periksa,
+     nota.`id_pas` AS nota_id_pas,
+     nota.`id_analis` AS nota_id_analis,
+     nota.`nm_test` AS nota_nm_test,
+     pasien.`id_pasien` AS pasien_id_pasien,
+     pasien.`nama_pasien` AS pasien_nama_pasien,
+     pasien.`alamat` AS pasien_alamat,
+     pasien.`nama_test` AS pasien_nama_test,
+     pasien.`tanggal_lahir` AS pasien_tanggal_lahir,
+     pemeriksaan.`kd_pemeriksaan` AS pemeriksaan_kd_pemeriksaan,
+     pemeriksaan.`nama_pemeriksaan` AS pemeriksaan_nama_pemeriksaan,
+     pemeriksaan.`sub_test` AS pemeriksaan_sub_test,
+     pemeriksaan.`jenis_pemeriksaan` AS pemeriksaan_jenis_pemeriksaan,
+     pemeriksaan.`kelompok` AS pemeriksaan_kelompok
+FROM
+     `analis` analis INNER JOIN `nota` nota ON analis.`id_analis` = nota.`id_analis`
+     INNER JOIN `pasien` pasien ON nota.`id_pas` = pasien.`id_pasien`
+     INNER JOIN `pemeriksaan` pemeriksaan ON pasien.`nama_test` = pemeriksaan.`nama_pemeriksaan`
+     INNER JOIN `buat` buat ON pemeriksaan.`sub_test` = buat.`subtest`]]>
+	</queryString>
+	<field name="analis_nama_analis" class="java.lang.String"/>
+	<field name="nota_id_nota" class="java.lang.String"/>
+	<field name="buat_subtest" class="java.lang.String"/>
+	<field name="buat_hasil_pemeriksaan" class="java.lang.String"/>
+	<field name="pasien_nama_pasien" class="java.lang.String"/>
+	<field name="pasien_alamat" class="java.lang.String"/>
+	<field name="pasien_nama_test" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="146" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="500" height="111" backcolor="#000000" uuid="23e23048-8696-4c72-9aec-4bfb65abeec2"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="253" height="66" uuid="5d5a3976-2e00-448a-b63f-441f7013ccc1"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Nota Pasien]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="148" y="66" width="252" height="29" uuid="8c8f0c0b-8a02-495e-98a6-a80046d04e7b"/>
+					<textElement textAlignment="Right">
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[RS Tiara Bunda]]></text>
+				</staticText>
+				<image>
+					<reportElement x="400" y="0" width="100" height="103" uuid="814a2592-aeb7-4bd0-8dc3-39664e85db2d"/>
+					<imageExpression><![CDATA["C:\\Users\\yazidaulia\\Documents\\NetBeansProjects\\TA_Laboratorium\\src\\img\\th2.png"]]></imageExpression>
+				</image>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="111" width="500" height="32" forecolor="#000000" backcolor="#CC0000" uuid="2d164e26-d0b7-4b71-b876-0776d4c00177"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="348" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="bea09c87-d586-4b25-bc3f-989c8aa7b92d"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="175" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="6" y="13" width="90" height="18" forecolor="#000000" uuid="9235b8c8-75bd-4d87-8d9b-ed80d71ec9f1"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID Nota        :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="4" y="38" width="92" height="18" forecolor="#000000" uuid="3e6ba66b-35a8-4cbf-8090-63557e404f83"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Pasien  :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="283" y="13" width="92" height="18" forecolor="#000000" uuid="568cb96c-28a0-4888-8f8e-a8a4dc4d4554"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Alamat          :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="96" y="13" width="119" height="18" uuid="48624f2d-ef52-447c-81d7-3257acc11725"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota_id_nota}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="96" y="38" width="119" height="18" uuid="9954105b-9a98-486b-b3fb-6f8152d54e6b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pasien_nama_pasien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="375" y="13" width="125" height="18" uuid="ae39b7c4-d819-494f-9f06-d28c5a7bd706"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pasien_alamat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="283" y="38" width="92" height="18" forecolor="#000000" uuid="91c1c1e2-d946-4da3-a1b8-938c60a3f5c4"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pemeriksaan  :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="36" width="125" height="20" uuid="cc9b68a2-7092-4c04-a941-83b1f8cf1d02"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pasien_nama_test}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="337" y="157" width="160" height="18" uuid="a3073081-d273-4067-be6e-487958cbec16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{analis_nama_analis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="337" y="78" width="86" height="20" uuid="cf1ab2ab-7a91-474c-8f02-2fdd2c755a8b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Bekasi Timur,]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="423" y="78" width="74" height="20" uuid="8a80869e-f2e7-43a1-ba16-2a45b62e33b4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
